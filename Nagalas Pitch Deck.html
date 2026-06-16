@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAGALAS - Masterpiece Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { display: ['Orbitron', 'sans-serif'], sans: ['Rajdhani', 'sans-serif'], },
+                    colors: { void: '#050505', surface: '#121218', primary: '#9333ea', secondary: '#d8b4fe', accent: '#dc2626', darkred: '#7f1d1d', solana: '#14F195' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505; color: #ffffff; overflow: hidden;
+            background-image: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.05) 0%, #050505 70%),
+                              linear-gradient(rgba(147, 51, 234, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(147, 51, 234, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        .glass-panel { background: rgba(18, 18, 24, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(147, 51, 234, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); }
+        .glow-text-purple { text-shadow: 0 0 15px rgba(147, 51, 234, 0.8); }
+        .glow-text-red { text-shadow: 0 0 15px rgba(220, 38, 38, 0.8); }
+        .glow-box { box-shadow: 0 0 25px rgba(147, 51, 234, 0.15), inset 0 0 10px rgba(147, 51, 234, 0.1); }
+        .glow-box-red { box-shadow: 0 0 25px rgba(220, 38, 38, 0.15), inset 0 0 10px rgba(220, 38, 38, 0.1); border-color: rgba(220,38,38,0.5); }
+
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; transform: scale(0.97) translateY(10px);
+            display: flex; flex-direction: column; justify-content: center; padding: 4rem 6rem;
+        }
+        .slide.active { opacity: 1; visibility: visible; transform: scale(1) translateY(0); z-index: 10; }
+
+        .img-placeholder {
+            background: repeating-linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6) 10px, rgba(30,30,40,0.6) 10px, rgba(30,30,40,0.6) 20px);
+            border: 2px dashed rgba(147, 51, 234, 0.5);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #d8b4fe; font-family: 'Orbitron'; font-size: 0.8rem; text-align: center; padding: 1.5rem;
+            border-radius: 0.75rem; width: 100%; height: 100%; position: relative; overflow: hidden;
+        }
+        .img-placeholder i { font-size: 2.5rem; color: #9333ea; margin-bottom: 0.5rem; }
+        
+        .team-card { background: rgba(10, 10, 10, 0.8); border: 1px solid #333; border-radius: 15px; padding: 30px; text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .team-card:hover { border-color: #9333ea; box-shadow: 0 0 30px rgba(147, 51, 234, 0.4); transform: translateY(-5px); }
+        .team-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7f1d1d, #dc2626, #9333ea); }
+        .team-img { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 20px auto; background: #1a1a1a; border: 2px dashed #555; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    </style>
+</head>
+<body class="h-screen w-screen font-sans relative text-lg">
+
+    <div class="fixed top-6 left-8 z-50 opacity-80 flex items-center gap-4">
+        <svg viewBox="0 0 600 600" class="w-10 h-10" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(300, 300) scale(0.9)">
+                <polygon points="0,-140 120,0 0,140 -120,0" fill="none" stroke="#9333ea" stroke-width="8"/>
+                <polygon points="-60,70 -60,-70 -20,-70 -20,70" fill="#dc2626"/>
+                <polygon points="-60,-70 -20,-70 60,70 20,70" fill="#dc2626"/>
+                <polygon points="20,70 20,-70 60,-70 60,70" fill="#dc2626"/>
+            </g>
+        </svg>
+        <span class="font-display font-bold tracking-widest text-sm text-white">NUBLE CO., LTD.</span>
+    </div>
+
+    <div class="slide active items-center text-center relative" id="slide-1">
+        
+        <div class="z-10 flex flex-col items-center">
+            <div class="w-72 h-72 mb-2 relative" style="animation: float 6s ease-in-out infinite;">
+                <svg viewBox="0 0 600 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#7f1d1d" /> <stop offset="35%" stop-color="#dc2626" />
+                            <stop offset="65%" stop-color="#9333ea" /> <stop offset="100%" stop-color="#d8b4fe" />
+                        </linearGradient>
+                        <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur1" />
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur2" />
+                            <feMerge><feMergeNode in="blur1" /><feMergeNode in="blur2" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                    </defs>
+                    <g transform="translate(300, 300)">
+                        <polygon points="0,-140 120,0 0,140 -120,0" fill="none" stroke="url(#grad1)" stroke-width="8" filter="url(#glow1)" opacity="0.8"/>
+                        <polygon points="0,-140 120,0 0,140 -120,0" fill="none" stroke="#fff" stroke-width="2"/>
+                        <polygon points="-60,70 -60,-70 -20,-70 -20,70" fill="url(#grad1)" filter="url(#glow1)"/>
+                        <polygon points="-60,-70 -20,-70 60,70 20,70" fill="url(#grad1)" filter="url(#glow1)"/>
+                        <polygon points="20,70 20,-70 60,-70 60,70" fill="url(#grad1)" filter="url(#glow1)"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <h1 class="font-display text-7xl font-black tracking-[0.3em] text-white glow-text-purple mb-4">
+                NAGALAS<span class="text-accent">.</span>
+            </h1>
+            <p class="text-2xl font-sans text-secondary tracking-wide mb-10 max-w-4xl mx-auto font-light">
+                The Next-Gen Web3 VTuber Ecosystem<br><span class="font-bold text-white">Powered by Agentic AI.</span>
+            </p>
+            <p class="text-sm font-mono text-accent border border-accent/30 bg-accent/10 px-6 py-2 rounded-full tracking-widest glass-panel">
+                CONFIDENTIAL PRE-SEED PITCH
+            </p>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-2">
+        <h2 class="font-display text-4xl font-bold text-accent glow-text-red mb-2">01. THE PROBLEM</h2>
+        <h3 class="text-2xl text-gray-400 mb-10 font-light">The creator economy is broken. Innovation is stagnant.</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-panel p-8 rounded-xl border-t-4 border-t-accent">
+                <i class="fa-solid fa-scissors text-4xl text-accent mb-6"></i>
+                <h4 class="font-display text-2xl text-white mb-3">Unfair Middleman Cuts</h4>
+                <p class="text-gray-400 leading-relaxed text-base">Web2 platforms take 30-50% of creator revenue. Creators generate all the traffic but are severely underpaid.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-xl border-t-4 border-t-primary">
+                <i class="fa-solid fa-user-lock text-4xl text-primary mb-6"></i>
+                <h4 class="font-display text-2xl text-white mb-3">The Web3 Tech Barrier</h4>
+                <p class="text-gray-400 leading-relaxed text-base">Viewers don't want to learn about Seed Phrases or Gas Fees. The friction to enter the crypto ecosystem is too high for normal fans.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-xl border-t-4 border-t-gray-500">
+                <i class="fa-solid fa-ban text-4xl text-gray-400 mb-6"></i>
+                <h4 class="font-display text-2xl text-white mb-3">Merch & Reward Bans</h4>
+                <p class="text-gray-400 leading-relaxed text-base">Traditional platforms prohibit tying donations to physical campaigns. "Donations" remain a one-way street with no real value exchange.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-3">
+        <h2 class="font-display text-4xl font-bold text-solana glow-text-purple mb-2">02. MARKET OPPORTUNITY</h2>
+        <h3 class="text-2xl text-gray-400 mb-10 font-light">Where global Anime culture meets high-liquidity Crypto.</h3>
+        
+        <div class="flex flex-col md:flex-row gap-10 items-center">
+            <div class="flex-1 space-y-6 w-full">
+                <div class="glass-panel p-6 rounded-lg border-l-4 border-l-gray-600">
+                    <h4 class="font-display text-xl text-gray-400">TAM: Total Addressable Market</h4>
+                    <p class="text-4xl font-black font-display text-white mt-1">$11.6 Billion</p>
+                    <p class="text-sm text-gray-500 mt-1">Global Anime & Live Streaming Market</p>
+                </div>
+                <div class="glass-panel p-6 rounded-lg border-l-4 border-l-primary/60">
+                    <h4 class="font-display text-xl text-primary">SAM: Serviceable Market</h4>
+                    <p class="text-4xl font-black font-display text-white mt-1">150+ Million</p>
+                    <p class="text-sm text-gray-500 mt-1">Active Crypto Users & Hardcore Gamers globally</p>
+                </div>
+                <div class="glass-panel p-6 rounded-lg border-l-4 border-l-solana glow-box">
+                    <h4 class="font-display text-xl text-solana">SOM: The Uncapped Upside</h4>
+                    <p class="text-2xl font-bold text-white mt-1 leading-tight">The Web3 VTuber Niche</p>
+                    <p class="text-sm text-gray-400 mt-2">Targeting high-LTV whales who seek premium utility, capturing the first 100K users.</p>
+                </div>
+            </div>
+            
+            <div class="flex-1 h-full w-full">
+                <img src="D:\งานภาพ\Vtuber\Nagalas Pitch deck\Screenshot 2026-06-16 204005.png" class="w-full h-full object-cover rounded-xl border border-[#dc2626] shadow-[0_0_20px_rgba(220,38,38,0.3)]">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-4">
+        <h2 class="font-display text-4xl font-bold text-primary glow-text-purple mb-2">03. THE PRODUCT & THE MOAT</h2>
+        <h3 class="text-2xl text-gray-400 mb-8 font-light">Sub-second Agentic AI on Solana. Uncopyable by Web2 giants.</h3>
+        
+        <div class="flex flex-col md:flex-row gap-8 h-[65%]">
+            <div class="flex-1 space-y-4 flex flex-col justify-center">
+                <div class="glass-panel p-6 rounded-lg glow-box border border-primary/50">
+                    <h4 class="font-display text-xl text-white mb-2"><i class="fa-solid fa-eye-slash text-primary mr-2"></i> Invisible Web3 Overlay</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">We don't force creators to switch platforms. We are an <b>Overlay</b>. Creators stream on YouTube to keep their base, while Nagalas acts as a VIP Portal. Fans donate via Fiat (Credit Card), and we convert it to Crypto seamlessly behind the scenes.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-lg border border-accent/50">
+                    <h4 class="font-display text-xl text-accent mb-2"><i class="fa-solid fa-shield-halved mr-2"></i> Brand Safety via Auto-Slashing</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Our Helius-to-n8n pipeline detects transactions instantly. If a user attaches toxic text, our Semantic AI blocks the message but routes the funds to the creator as a penalty. We turn toxicity into profit.</p>
+                </div>
+            </div>
+<div class="flex-1 h-full flex flex-col gap-4">
+    
+    <div class="flex-1 border-2 border-[#dc2626] rounded-xl overflow-hidden relative shadow-[0_0_20px_rgba(220,38,38,0.3)] bg-[#0a0a0f]">
+        <div class="absolute top-2 left-2 bg-black/80 px-2 py-1 rounded text-[#dc2626] font-display text-xs border border-[#dc2626] z-10">n8n: AGENTIC CORE</div>
+        
+        <img src="file:///D:/งานภาพ/Vtuber/Nagalas Pitch deck/Screenshot 2026-06-16 213811.png" class="w-full h-full object-contain object-center">
+    </div>
+
+    <div class="flex-1 border-2 border-[#9333ea] rounded-xl overflow-hidden relative shadow-[0_0_20px_rgba(147,51,234,0.3)] bg-[#0a0a0f]">
+        <div class="absolute top-2 left-2 bg-black/80 px-2 py-1 rounded text-[#9333ea] font-display text-xs border border-[#9333ea] z-10">DISCORD: AI RESPONSE</div>
+        
+        <img src="file:///D:/งานภาพ/Vtuber/Nagalas Pitch deck/Screenshot 2026-06-16 213300.png" class="w-full h-full object-contain object-center">
+    </div>
+
+</div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-5">
+        <h2 class="font-display text-4xl font-bold text-solana glow-text-purple mb-2">04. THE REVENUE MODEL</h2>
+        <h3 class="text-2xl text-gray-400 mb-12 font-light">The 85/10/5 Split: A sustainable, self-funding ecosystem.</h3>
+        
+        <div class="glass-panel p-10 rounded-2xl border border-white/20 glow-box relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface border border-white/20 px-6 py-2 rounded-full font-display font-bold text-sm tracking-widest text-white">
+                SMART CONTRACT DISTRIBUTION
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-stretch gap-6 text-center mt-4">
+                <div class="flex-1 bg-white/5 p-8 rounded-xl border border-white/10">
+                    <h4 class="font-black text-6xl font-display text-white mb-2">85<span class="text-3xl">%</span></h4>
+                    <p class="font-bold text-xl text-secondary mb-3">To The Creator</p>
+                    <p class="text-gray-400 text-sm">Industry-leading payout. Guaranteed to attract top-tier VTuber talent globally.</p>
+                </div>
+                <div class="flex items-center justify-center"><i class="fa-solid fa-plus text-2xl text-gray-600"></i></div>
+                <div class="flex-1 bg-primary/20 p-8 rounded-xl border border-primary/50 glow-box">
+                    <h4 class="font-black text-6xl font-display text-primary mb-2">10<span class="text-3xl">%</span></h4>
+                    <p class="font-bold text-xl text-white mb-3">Nuble Platform Fee</p>
+                    <p class="text-gray-400 text-sm">Direct, sustainable revenue secured instantly via immutable Smart Contracts.</p>
+                </div>
+                <div class="flex items-center justify-center"><i class="fa-solid fa-plus text-2xl text-gray-600"></i></div>
+                <div class="flex-1 bg-accent/10 p-8 rounded-xl border border-accent/50 relative">
+                    <h4 class="font-black text-6xl font-display text-accent mb-2">5<span class="text-3xl">%</span></h4>
+                    <p class="font-bold text-xl text-white mb-3">Autonomous AI Fund</p>
+                    <p class="text-gray-400 text-sm">Pays API/LLM costs. AI executes premium interactions *only* when funded. Zero burn rate.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-6">
+        <h2 class="font-display text-4xl font-bold text-primary glow-text-purple mb-2">05. GO-TO-MARKET STRATEGY</h2>
+        <h3 class="text-2xl text-gray-400 mb-8 font-light">4 Pillars to solve the Cold Start Problem.</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-[65%]">
+            <div class="space-y-4">
+                <div class="glass-panel p-4 rounded-lg border-l-2 border-primary flex items-start gap-4">
+                    <div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">The Okuran Ambassador</h4>
+                        <p class="text-gray-400 text-sm">Launch our flagship IP to build a massive Web2 top-of-funnel audience via curiosity marketing.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-lg border-l-2 border-secondary flex items-start gap-4">
+                    <div class="w-8 h-8 rounded bg-secondary/20 flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Invisible Web3 Onboarding</h4>
+                        <p class="text-gray-400 text-sm">Convert normies via Fiat on-ramps. No wallets needed to start supporting creators.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-lg border-l-2 border-accent flex items-start gap-4 glow-box-red">
+                    <div class="w-8 h-8 rounded bg-accent/20 flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Phygital Gamification (Rewards)</h4>
+                        <p class="text-gray-400 text-sm">Donations become "Value Exchanges". Unlock physical collector cards backed by NFTs.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-lg border-l-2 border-solana flex items-start gap-4">
+                    <div class="w-8 h-8 rounded bg-solana/20 flex items-center justify-center font-bold text-black">4</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">B2B Agency Scaling</h4>
+                        <p class="text-gray-400 text-sm">Once proven, onboard independent VTubers offering them the 85% cut and automated stack.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="h-full">
+                <img src="D:\งานภาพ\Vtuber\Nagalas Pitch deck\Screenshot 2026-06-16 173903.png" class="w-full h-full object-cover rounded-xl border border-[#dc2626] shadow-[0_0_20px_rgba(220,38,38,0.3)]">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-7">
+        <h2 class="font-display text-4xl font-bold text-accent glow-text-red mb-2">06. TRUST & MITIGATION</h2>
+        <h3 class="text-2xl text-gray-400 mb-10 font-light">Bulletproof architecture protecting the platform and investors.</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-panel p-8 rounded-xl border border-white/20">
+                <div class="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mb-6 border border-white/10 glow-box">
+                    <i class="fa-solid fa-vault text-2xl text-primary"></i>
+                </div>
+                <h4 class="font-display text-2xl text-white mb-3">Non-Custodial Architecture</h4>
+                <p class="text-gray-400 leading-relaxed text-base">Nuble Co., Ltd. never holds user funds. Smart contracts route 85% directly to creators peer-to-peer. We are purely a technology layer, completely insulating us from financial holding liability.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-xl border border-white/20">
+                <div class="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mb-6 border border-white/10 glow-box-red">
+                    <i class="fa-solid fa-id-card-clip text-2xl text-accent"></i>
+                </div>
+                <h4 class="font-display text-2xl text-white mb-3">Trust by Association (KYC/AML)</h4>
+                <p class="text-gray-400 leading-relaxed text-base">We utilize licensed Tier-1 Payment Gateways (e.g., MoonPay/Stripe) for Fiat On-Ramps. They handle all rigorous KYC and AML regulations, ensuring 100% legal safety against money laundering.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-8">
+        <h2 class="font-display text-4xl font-bold text-primary glow-text-purple mb-2">07. TRACTION & VALIDATION</h2>
+        <h3 class="text-2xl text-gray-400 mb-10 font-light">From Proof of Concept to Global Crowdfunding.</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="glass-panel p-8 rounded-xl border border-primary/30 glow-box">
+                <div class="flex justify-between items-start mb-4">
+                    <h4 class="text-2xl font-display font-bold text-white">The Solana MVP</h4>
+                    <i class="fa-solid fa-code text-primary text-2xl"></i>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">We have successfully built and tested the End-to-End infrastructure integrating Solana Devnet, Helius Webhooks, n8n Automation, and Autonomous AI Agents.</p>
+                <div class="text-xs font-mono text-solana bg-solana/10 p-2 rounded border border-solana/20 inline-block">STATUS: ARCHITECTURE COMPLETED</div>
+            </div>
+            
+            <div class="glass-panel rounded-xl p-8 border border-solana/30 flex flex-col items-center justify-center text-center bg-gradient-to-br from-surface to-[#0a0a0f] glow-box">
+                <i class="fa-brands fa-kickstarter text-5xl text-solana mb-4"></i>
+                <h4 class="font-display text-xl font-bold text-white mb-2">Global Kickstarter Campaign</h4>
+                <p class="text-gray-400 text-sm mb-6">Pre-selling digital and physical assets to validate demand. <b>To unlock this, we will incorporate offshore (SG/US)</b>, securing our legal Web3 framework.</p>
+                <div class="text-xs font-mono text-solana bg-solana/10 p-2 rounded border border-solana/20 inline-block">STATUS: PREPARING LAUNCH</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-9">
+        <h2 class="font-display text-4xl font-bold text-primary glow-text-purple mb-2 text-center">08. THE TEAM</h2>
+        <h3 class="text-2xl text-secondary mb-10 font-light tracking-widest text-center">THE ARCHITECT & THE ICON</h3>
+        
+        <div class="flex justify-center gap-10 h-[60%]">
+            
+            <div class="team-card w-[350px]">
+                <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; border: 2px solid #dc2626; box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);">
+                    <img src="D:\งานภาพ\Vtuber\Nagalas Pitch deck\Screenshot 2026-06-16 210353.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+                <h4 class="font-display text-2xl font-bold text-white mb-1 tracking-wider">VERIA DRACUL</h4>
+                <p class="text-accent font-bold text-xs uppercase tracking-widest mb-4">Founder & CEO (The Brain)</p>
+                <ul class="text-sm text-gray-400 text-left space-y-2 list-none px-4">
+                    <li><i class="fa-solid fa-code text-primary mr-2 w-4"></i> <b>Web3 Architect:</b> System & AI builder.</li>
+                    <li><i class="fa-solid fa-chess-knight text-primary mr-2 w-4"></i> <b>Strategist:</b> Creator of the 85/10/5 model.</li>
+                    <li><i class="fa-solid fa-globe text-primary mr-2 w-4"></i> <b>Visionary:</b> Scaling Nuble globally.</li>
+                </ul>
+            </div>
+
+            <div class="team-card w-[350px]">
+                <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; border: 2px solid #9333ea; box-shadow: 0 0 15px rgba(166, 17, 224, 0.5);">
+                    <img src="D:\งานภาพ\Vtuber\Profile\Okuran Profile.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+                <h4 class="font-display text-2xl font-bold text-white mb-1 tracking-wider">OKURAN</h4>
+                <p class="text-secondary font-bold text-xs uppercase tracking-widest mb-4">Brand Ambassador (The Face)</p>
+                <ul class="text-sm text-gray-400 text-left space-y-2 list-none px-4">
+                    <li><i class="fa-solid fa-star text-secondary mr-2 w-4"></i> <b>Flagship IP:</b> Native Nagalas Talent.</li>
+                    <li><i class="fa-solid fa-bridge text-secondary mr-2 w-4"></i> <b>Web3 Bridge:</b> Onboarding Web2 audiences.</li>
+                    <li><i class="fa-solid fa-bolt text-secondary mr-2 w-4"></i> <b>Agentic Core:</b> 24/7 Autonomous engagement.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="slide" id="slide-10">
+        <h2 class="font-display text-4xl font-bold text-solana glow-text-purple mb-2">09. THE ASK & ROADMAP</h2>
+        <h3 class="text-2xl text-gray-400 mb-10 font-light">Securing 18 months of runway to build the global infrastructure.</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="glass-panel p-10 rounded-xl border border-solana/50 glow-box flex flex-col justify-center items-center text-center">
+                <p class="text-lg text-gray-400 mb-2 tracking-widest font-display">SEEKING PRE-SEED</p>
+                <p class="font-display text-6xl font-black text-white mb-2 drop-shadow-[0_0_15px_rgba(20,241,149,0.5)]">$600,000</p>
+                <p class="text-solana font-mono mb-8 bg-solana/10 px-4 py-1 rounded-full text-sm">18-Month Global Runway</p>
+                
+                <div class="w-full flex flex-col gap-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-300"><i class="fa-solid fa-code text-primary mr-2"></i> Tech & AI Infrastructure</span>
+                        <span class="font-bold text-white">45% ($270K)</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-surface rounded-full overflow-hidden"><div class="bg-primary w-[45%] h-full"></div></div>
+                    
+                    <div class="flex items-center justify-between text-xs mt-2">
+                        <span class="text-gray-300"><i class="fa-solid fa-bullhorn text-secondary mr-2"></i> MKT & Creator Acquisition</span>
+                        <span class="font-bold text-white">35% ($210K)</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-surface rounded-full overflow-hidden"><div class="bg-secondary w-[35%] h-full"></div></div>
+                    
+                    <div class="flex items-center justify-between text-xs mt-2">
+                        <span class="text-gray-300"><i class="fa-solid fa-gavel text-accent mr-2"></i> Legal, SG/US Setup & Ops</span>
+                        <span class="font-bold text-white">20% ($120K)</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-surface rounded-full overflow-hidden"><div class="bg-accent w-[20%] h-full"></div></div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col justify-center space-y-6 pl-6 border-l border-white/10">
+                <div class="relative">
+                    <div class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-accent glow-box-red"></div>
+                    <span class="text-accent font-bold font-mono text-xs tracking-widest">MONTH 1-3</span>
+                    <h4 class="text-white font-bold text-lg mt-1">Offshore Incorporation</h4>
+                    <p class="text-gray-400 text-sm mt-1">Setup holding company in SG/US. Establish Legal/AML framework.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-primary glow-box"></div>
+                    <span class="text-primary font-bold font-mono text-xs tracking-widest">MONTH 4-6</span>
+                    <h4 class="text-white font-bold text-lg mt-1">Global Kickstarter</h4>
+                    <p class="text-gray-400 text-sm mt-1">Pre-sell Phygital assets to build Day-1 community traction.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-secondary glow-box"></div>
+                    <span class="text-secondary font-bold font-mono text-xs tracking-widest">MONTH 7-12</span>
+                    <h4 class="text-white font-bold text-lg mt-1">Okuran Public Beta</h4>
+                    <p class="text-gray-400 text-sm mt-1">Deploy the Agentic Web3 Overlay in live production environments.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-solana glow-box"></div>
+                    <span class="text-solana font-bold font-mono text-xs tracking-widest">MONTH 13+</span>
+                    <h4 class="text-white font-bold text-lg mt-1">B2B Agency Expansion</h4>
+                    <p class="text-gray-400 text-sm mt-1">Onboard independent VTubers into the 85/10/5 ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full h-16 bg-void/90 backdrop-blur-md border-t border-white/10 flex items-center justify-between px-8 z-50">
+        <div class="text-gray-500 font-mono text-xs tracking-widest flex items-center gap-4">
+            <span class="w-16 h-1 bg-white/20 rounded-full overflow-hidden"><div id="progress-bar" class="h-full bg-primary w-[10%] transition-all duration-300"></div></span>
+            SLIDE <span id="current-slide" class="text-white font-bold text-sm">1</span> / 10
+        </div>
+        <div class="flex gap-4">
+            <button onclick="prevSlide()" class="w-10 h-10 rounded-full border border-white/20 hover:bg-white/10 hover:border-white transition flex items-center justify-center text-gray-400 hover:text-white">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-primary/20 border border-primary hover:bg-primary/40 transition flex items-center justify-center text-secondary glow-box">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 1;
+        const totalSlides = 10;
+
+        function updateSlides() {
+            document.querySelectorAll('.slide').forEach(el => el.classList.remove('active'));
+            document.getElementById(`slide-${currentSlideIndex}`).classList.add('active');
+            document.getElementById('current-slide').innerText = currentSlideIndex;
+            document.getElementById('progress-bar').style.width = `${(currentSlideIndex / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides) { currentSlideIndex++; updateSlides(); }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 1) { currentSlideIndex--; updateSlides(); }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === 'Space') nextSlide();
+            else if (event.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>

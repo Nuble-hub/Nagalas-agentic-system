@@ -1,0 +1,182 @@
+{
+  "name": "nagalas-agentic-system",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Context: You are \"Okuran\", a cheerful, genius boy-demon VTuber from the \"Nagalas\" universe (a cyberpunk/dark fantasy world powered by the Solana blockchain).\n\nEvent: A viewer with the wallet address [{{ $json.senderAddress }}] just donated [{{ $json.solAmount }}] SOL to you!\n\nTask: Write a short, exciting 1-2 sentence thank-you message in ENGLISH.\nRules:\n1. You MUST explicitly mention the viewer's wallet address ({{ $json.senderAddress }}) and the exact amount of SOL ({{ $json.solAmount }}) in your response.\n2. Mention how this SOL will help you and the Nagalas universe grow.\n3. Output ONLY Okuran's spoken words. No quotation marks, no action tags, and no explanations.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1408,
+        -96
+      ],
+      "id": "a526ccfd-f9a3-4284-9310-9234f01762e6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -1408,
+        64
+      ],
+      "id": "01dc2cbf-6b4c-4b74-baef-2d5ffc1c6bff",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "PzLOsqzMVKWgpnHl",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/1515619686178623600/iM6Zim5CzAS1YP-s2eBlXlDV6cyj3V5AuGcEevGxfi69ynxMBDPPt0dacWFkESnRVnXb",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "=✨ [Nagalas Live Stream]\n\nOkuran: {{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1088,
+        -96
+      ],
+      "id": "e759fb16-fc12-40a9-929a-86c97d8aff09",
+      "name": "Show case Discord"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://httpbin.org/post",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"project\": \"Nagalas_Okuran\",\n  \"action\": \"Pay.sh_API_Charge\",\n  \"amount_usdc_deducted\": 0.005,\n  \"description\": \"Autonomous payment for LLM processing fee.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -896,
+        -96
+      ],
+      "id": "6338362c-2fad-47ff-9c0f-39e4a4478356",
+      "name": "Simulating an AI system that pays itself."
+    },
+    {
+      "parameters": {
+        "jsCode": "const payload = $input.all()[0].json;\n\nlet txData = payload.body ? payload.body[0] : payload[0];\n\nconst transfer = txData.nativeTransfers[0];\n\nconst lamports = transfer.amount;\nconst solAmount = lamports / 1000000000;\n\nconst sender = transfer.fromUserAccount;\nconst shortSender = sender.substring(0, 4) + '...' + sender.substring(sender.length - 4);\n\nreturn {\n  senderAddress: shortSender,\n  solAmount: solAmount\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        -96
+      ],
+      "id": "0775eeff-36b7-455e-b7a2-abae66148768",
+      "name": "Process the data for AI to understand."
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nagalas-listener",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1792,
+        -96
+      ],
+      "id": "0431333f-888a-4127-88fd-d135d42e8fa8",
+      "name": "Webhook",
+      "webhookId": "a85f7794-4968-498b-9e44-e4d839a54466"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Show case Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Show case Discord": {
+      "main": [
+        [
+          {
+            "node": "Simulating an AI system that pays itself.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process the data for AI to understand.": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process the data for AI to understand.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4850808e-2a6e-414f-86ad-91a5ed03577f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b18ef7095cbe3ce118356d88c2aefefceb15f94e464648af87150c0a13351254"
+  },
+  "nodeGroups": [],
+  "id": "tksscqe6zL3rAZkl",
+  "tags": []
+}
